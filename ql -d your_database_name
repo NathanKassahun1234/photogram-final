@@ -1,0 +1,12 @@
+=> [[31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31musername[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31memail[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mencrypted_password[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mprivate[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mcomments_count[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mlikes_count[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mremember_created_at[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mreset_password_sent_at[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mreset_password_token[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mcreated_at[1;31m"[0m[31m[0m,
+ [31m[1;31m"[0m[31mupdated_at[1;31m"[0m[31m[0m]
