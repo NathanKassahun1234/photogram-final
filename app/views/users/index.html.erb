@@ -33,7 +33,7 @@
 
       <div>
         <label for="encrypted_password_box">
-          Encrypted password
+          Password
         </label>
 
         <input type="text" id="encrypted_password_box" name="password">
@@ -90,10 +90,6 @@
     <table border="1">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
           Username
         </th>
 
@@ -102,43 +98,10 @@
         </th>
 
         <th>
-          Encrypted password
+          Private?
         </th>
 
         <th>
-          Private
-        </th>
-
-        <th>
-          Comments count
-        </th>
-
-        <th>
-          Likes count
-        </th>
-
-        <th>
-          Remember created at
-        </th>
-
-        <th>
-          Reset password sent at
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
         </th>
 
         <th>
@@ -148,19 +111,11 @@
       <% @list_of_users.each do |a_user| %>
       <tr>
         <td>
-          <%= a_user.id %>
-        </td>
-
-        <td>
           <%= a_user.username %>
         </td>
 
         <td>
           <%= a_user.email %>
-        </td>
-
-        <td>
-          <%= a_user.encrypted_password %>
         </td>
 
         <td>
@@ -172,38 +127,22 @@
         </td>
 
         <td>
-          <%= a_user.comments_count %>
+          <% if current_user.nil? %>
+            <!- nothing -->
+          <% else %>
+            <% fol_req = FollowRequest.find_by(sender_id: current_user.id, recipient_id: a_user.id) %>
+            <% if fol_req.nil? %>
+              <%= button_to "Follow", "/insert_follow_request", method: :post, params: {query_sender_id: current_user.id, query_recipient_id: a_user.id, query_status: "pending"} %>
+            <% elsif fol_req.status == "accepted" %>
+              Unfollow
+            <% else %>
+              Request sent, Cancel?
+            <% end %>
+          <% end %>
         </td>
 
         <td>
-          <%= a_user.likes_count %>
-        </td>
-
-        <td>
-          <%= a_user.remember_created_at %>
-        </td>
-
-        <td>
-          <%= a_user.reset_password_sent_at %>
-        </td>
-
-        <td>
-          <%= a_user.created_at %>
-        </td>
-
-        <td>
-          <%= a_user.updated_at %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_user.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_user.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/users/<%= a_user.id %>">
+          <a href="/users/<%= a_user.username %>">
             Show details
           </a>
         </td>
@@ -214,3 +153,7 @@
 </div>
 
 <hr>
+
+
+
+        

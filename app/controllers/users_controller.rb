@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @the_user = User.find_by(username: params.fetch("username"))
+    @the_user = User.find_by(username: params.fetch("id"))
     if @the_user.nil?
       redirect_to "/users", alert: "User not found."
     else
