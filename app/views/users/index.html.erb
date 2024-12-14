@@ -134,7 +134,7 @@
             <% if fol_req.nil? %>
               <%= button_to "Follow", "/insert_follow_request", method: :post, params: {query_sender_id: current_user.id, query_recipient_id: a_user.id, query_status: "pending"} %>
             <% elsif fol_req.status == "accepted" %>
-              Unfollow
+              <a href="/">Unfollow</a>
             <% else %>
               Request sent, <a href='/'>Cancel</a>?
             <% end %>
