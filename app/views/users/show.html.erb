@@ -40,6 +40,23 @@
         <%= FollowRequest.where({ :status => "accepted", :recipient_id => @the_user.id }).count %>
       </dd>
 
+       <dt>
+        My pending follow requests
+      </dt>
+      <% for req in FollowRequest.where({ :status => "pending", :recipient_id => @the_user.id }) %>
+        <% recipient_id = req.sender_id %>
+        <% recipient_user = User.where({ :id => recipient_id }).first %>
+        <% if recipient_user %>
+          <dd>
+            Recipient Username: <%= recipient_user.username %>
+          </dd>
+        <% else %>
+          <dd>
+            Recipient not found
+          </dd>
+        <% end %>
+      <% end %>
+
       <dt>
         Following count
       </dt>
