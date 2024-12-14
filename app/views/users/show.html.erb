@@ -34,10 +34,17 @@
       </dd>
 
       <dt>
-        Encrypted password
+        Follower count
       </dt>
       <dd>
-        <%= @the_user.encrypted_password %>
+        <%= FollowRequest.where({ :status => "accepted", :recipient_id => @the_user.id }).count %>
+      </dd>
+
+      <dt>
+        Following count
+      </dt>
+      <dd>
+        <%= FollowRequest.where({ :status => "accepted", :sender_id => @the_user.id }).count %>
       </dd>
 
       <dt>
@@ -62,13 +69,6 @@
       </dd>
 
       <dt>
-        Remember created at
-      </dt>
-      <dd>
-        <%= @the_user.remember_created_at %>
-      </dd>
-
-      <dt>
         Reset password sent at
       </dt>
       <dd>
@@ -82,33 +82,6 @@
         <%= @the_user.reset_password_token %>
       </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= @the_user.created_at %>
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= @the_user.updated_at %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_user.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_user.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
