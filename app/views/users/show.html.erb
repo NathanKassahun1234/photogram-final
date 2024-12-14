@@ -120,7 +120,7 @@
     <% if fol_req.nil? %>
       <%= button_to "Follow", "/insert_follow_request", method: :post, params: {query_sender_id: current_user.id, query_recipient_id: @the_user.id, query_status: "pending"} %>
     <% elsif fol_req.status == "accepted" %>
-      Unfollow
+      <a href='/'>Unfollow</a>
     <% else %>
       Request sent, <a href='/'>Cancel</a>?
     <% end %>
@@ -129,110 +129,116 @@
 <hr>
 
 
-<div>
+<% if current_user.nil? %>
+  You can't edit this
+<% elsif current_user.id != @the_user.id %>
+  You can't edit this. Move along.
+<% else %>
   <div>
-    <h2>
-      Edit user
-    </h2>
+    <div>
+      <h2>
+        Edit user
+      </h2>
 
-    <form action="/modify_user/<%= @the_user.id %>"  method="post" >
-      <div>
-        <label for="username_box">
-          Username
-        </label>
+      <form action="/modify_user/<%= @the_user.id %>"  method="post" >
+        <div>
+          <label for="username_box">
+            Username
+          </label>
 
-        <input type="text" id="username_box" name="query_username" value="<%= @the_user.username %>">
-      </div>
+          <input type="text" id="username_box" name="query_username" value="<%= @the_user.username %>">
+        </div>
 
-      <div>
-        <label for="email_box">
-          Email
-        </label>
+        <div>
+          <label for="email_box">
+            Email
+          </label>
 
-        <input type="text" id="email_box" name="query_email" value="<%= @the_user.email %>">
-      </div>
+          <input type="text" id="email_box" name="query_email" value="<%= @the_user.email %>">
+        </div>
 
-      <div>
-        <label for="encrypted_password_box">
-          Encrypted password
-        </label>
+        <div>
+          <label for="encrypted_password_box">
+            Encrypted password
+          </label>
 
-        <input type="text" id="encrypted_password_box" name="query_encrypted_password" value="<%= @the_user.encrypted_password %>">
-      </div>
+          <input type="text" id="encrypted_password_box" name="query_encrypted_password" value="<%= @the_user.encrypted_password %>">
+        </div>
 
-      <div>
-        <input type="checkbox" id="private_box" name="query_private" value="1" <%= "checked" if @the_user.private %>>
+        <div>
+          <input type="checkbox" id="private_box" name="query_private" value="1" <%= "checked" if @the_user.private %>>
 
-        <label for="private_box">
-            Private
-        </label>
-      </div>
+          <label for="private_box">
+              Private
+          </label>
+        </div>
 
-      <div>
-        <label for="comments_count_box">
-          Comments count
-        </label>
+        <div>
+          <label for="comments_count_box">
+            Comments count
+          </label>
 
-        <input type="text" id="comments_count_box" name="query_comments_count" value="<%= @the_user.comments_count %>">
-      </div>
+          <input type="text" id="comments_count_box" name="query_comments_count" value="<%= @the_user.comments_count %>">
+        </div>
 
-      <div>
-        <label for="likes_count_box">
-          Likes count
-        </label>
+        <div>
+          <label for="likes_count_box">
+            Likes count
+          </label>
 
-        <input type="text" id="likes_count_box" name="query_likes_count" value="<%= @the_user.likes_count %>">
-      </div>
+          <input type="text" id="likes_count_box" name="query_likes_count" value="<%= @the_user.likes_count %>">
+        </div>
 
-      <div>
-        <label for="remember_created_at_box">
-          Remember created at
-        </label>
+        <div>
+          <label for="remember_created_at_box">
+            Remember created at
+          </label>
 
-        <input type="datetime-local" id="remember_created_at_box" name="query_remember_created_at"
-         value="<%= @the_user.remember_created_at %>">
-      </div>
+          <input type="datetime-local" id="remember_created_at_box" name="query_remember_created_at"
+          value="<%= @the_user.remember_created_at %>">
+        </div>
 
-      <div>
-        <label for="reset_password_sent_at_box">
-          Reset password sent at
-        </label>
+        <div>
+          <label for="reset_password_sent_at_box">
+            Reset password sent at
+          </label>
 
-        <input type="datetime-local" id="reset_password_sent_at_box" name="query_reset_password_sent_at"
-         value="<%= @the_user.reset_password_sent_at %>">
-      </div>
+          <input type="datetime-local" id="reset_password_sent_at_box" name="query_reset_password_sent_at"
+          value="<%= @the_user.reset_password_sent_at %>">
+        </div>
 
-      <div>
-        <label for="reset_password_token_box">
-          Reset password token
-        </label>
+        <div>
+          <label for="reset_password_token_box">
+            Reset password token
+          </label>
 
-        <input type="text" id="reset_password_token_box" name="query_reset_password_token" value="<%= @the_user.reset_password_token %>">
-      </div>
+          <input type="text" id="reset_password_token_box" name="query_reset_password_token" value="<%= @the_user.reset_password_token %>">
+        </div>
 
-      <div>
-        <label for="created_at_box">
-          Created at
-        </label>
+        <div>
+          <label for="created_at_box">
+            Created at
+          </label>
 
-        <input type="datetime-local" id="created_at_box" name="query_created_at"
-         value="<%= @the_user.created_at %>">
-      </div>
+          <input type="datetime-local" id="created_at_box" name="query_created_at"
+          value="<%= @the_user.created_at %>">
+        </div>
 
-      <div>
-        <label for="updated_at_box">
-          Updated at
-        </label>
+        <div>
+          <label for="updated_at_box">
+            Updated at
+          </label>
 
-        <input type="datetime-local" id="updated_at_box" name="query_updated_at"
-         value="<%= @the_user.updated_at %>">
-      </div>
+          <input type="datetime-local" id="updated_at_box" name="query_updated_at"
+          value="<%= @the_user.updated_at %>">
+        </div>
 
-      <button>
-        Update user
-      </button>
-    </form>
+        <button>
+          Update user
+        </button>
+      </form>
+    </div>
   </div>
-</div>
+<% end %>
 
 <hr>
